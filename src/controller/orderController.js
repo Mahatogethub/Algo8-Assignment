@@ -110,4 +110,4 @@ const updateOrder = async function (req, res) {
     }
 }
 
-module.exports = {createOrder}
+module.exports = {createOrder , updateOrder}

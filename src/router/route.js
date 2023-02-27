@@ -22,17 +22,16 @@ router.get('/productPrice' , authantication,authorization,productController.getP
 
 router.get('/productName', authantication, productController.getProductName) ;
 
-router.put('/product/:productId' , authantication, authorization ,productController.updateProduct) ;
+router.put('/product/:productId' , authantication,productController.updateProduct) ;
 
-router.delete('/product/:productId' , authantication,  authorization ,productController.deleteProduct) ;
+router.delete('/product/:productId' , authantication,productController.deleteProduct) ;
 
 //--------------------------------------------------------------------------------------------------------------------
 
 //------------------------------------------order-------------------------------------------------------------------
 router.post('/order' , authantication, authorization ,orderController.createOrder) ;
 
-
-
+router.put('/order' , authantication , authorization , orderController.updateOrder)
 
 //-----------------------------------------------------------------------------------------------------------------
 // router.get('/*' , (req,res) => {

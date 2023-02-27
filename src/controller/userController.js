@@ -30,10 +30,10 @@ const createUser = async (req , res) => {
       return res.status(400).send({status:false , message : `please provide valid password`})
     }
     
-    const isChecked = await userModel.findOne({email : userName})
+    const isChecked = await userModel.findOne({userName : userName})
     if(isChecked){
       if(isChecked.userName == userName){
-        return res.status(400).send({status:false,message:`This ${email} is not unique,Please provide unique emailId`})
+        return res.status(400).send({status:false,message:`This ${userName} is not unique,Please provide unique emailId`})
       }
     }    
    

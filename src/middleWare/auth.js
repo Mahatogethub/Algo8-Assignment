@@ -33,29 +33,27 @@ catch(err){
 // Middleware to check user access
 const authorization = async (req, res, next) => {
    try{
-   // Get user designation and assigned table(s) from authentication token or session
+
    const designation = req.params.userId ;
  
    const finda = await userModel.findOne( {designation : designation})
    // Check if user is an admin
    if (designation === 'admin') {
-     return next(); // Admin has access to all tables, so allow access to route
+     return next(); 
    }
  
    if (finda === 'admin') {
-      return next(); // Admin has access to all tables, so allow access to route
+      return next(); 
     }
 
-   // Check if user is a supervisor and has access to the requested table
-   const requestedProduct = req.params.productId; // Assume table ID is provided in URL parameter
-   if (finda === 'supervisor'){ //&& assignedTable.includes(requestedProduct)) {
-     return next(); // Supervisor has access to requested table, so allow access to route
+   const requestedProduct = req.params.productId; 
+   if (finda === 'supervisor'){ 
+     return next(); 
    }
  
-
      let saveData = await productModel.find(requestedProduct) ;
 
-       let product = saveData.productId  //.toString() ;
+       let product = saveData.productId ;
 
        if(product != req.loggedInUser){
          return res.status(403).send({status:false , message : 'Permission is denied for the user'})
@@ -67,17 +65,7 @@ const authorization = async (req, res, next) => {
    return res.status(500).send({message : err.message})
  }
 }
-//  // Example route that requires admin access
-//  app.get('/admin-only', checkAccess, (req, res) => {
-//    // Only admin users can access this route
-//    res.json({ message: 'Admin access granted' });
-//  });
- 
-//  // Example route that requires supervisor access to a specific table
-//  app.get('/table/:tableId', checkAccess, (req, res) => {
-//    // Only admin users or supervisors with access to the requested table can access this route
-//    res.json({ message: 'Table access granted' });
-//  });
+
  
 
 module.exports = {authantication , authorization}
