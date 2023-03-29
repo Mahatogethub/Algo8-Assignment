@@ -1,4 +1,4 @@
-# Algo8-Assignment
+# Product management
 
 ### Requirement
 
